@@ -139,8 +139,8 @@ def run_code():
     doc['code'].value += '\n'
     history.append(currentLine)
     current = len(history)
-    
-    if _status == "main" or _status == "3string":
+
+    if _status in ["main", "3string"]:
         try:
             _ = editor_ns['_'] = eval(currentLine, editor_ns)
             flush()
@@ -171,7 +171,7 @@ def run_code():
             else:
                 info, filename, lineno, offset, line = msg.args
                 print(f"  File <stdin>, line {lineno}")
-                print("    " + line)
+                print(f"    {line}")
                 print("    " + offset * " " + "^")
                 print("SyntaxError:", info)
                 flush()
